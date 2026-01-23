@@ -13,6 +13,12 @@ CREATE TABLE IF NOT EXISTS CUSTOMER(
 	Cust_Email	VARCHAR(60)
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS APPOINTMENT(
+	Apt_Lvl_ID	CHAR(2) PRIMARY KEY,
+	Apt_Lvl_Desc	VARCHAR(40),
+	Apt_Hourly_Rate	DECIMAL(5,2)
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS STORE(
 	Str_Num		INT PRIMARY KEY AUTO_INCREMENT,
 	Str_Name	VARCHAR(50),
@@ -32,20 +38,14 @@ CREATE TABLE IF NOT EXISTS STAFF(
 	Store_ID	INT,
 	SupervisorID	INT,
 	FOREIGN KEY (Store_ID) REFERENCES STORE(Str_Num),
-	FOREIGN KEY (SupervisorID) REFERENCES STAFF(Staff_ID)
+	FOREIGN KEY (SupervisorID) REFERENCES STAFF(Staff_ID),
+	FOREIGN KEY (Staff_Apt_Level) REFERENCES APPOINTMENT(Apt_Lvl_ID)
 ) ENGINE=InnoDB;
 
 ALTER TABLE STORE
 ADD CONSTRAINT fk_store_staff
 FOREIGN KEY (StoreManagerID) 
 REFERENCES STAFF(Staff_ID);
-
-
-CREATE TABLE IF NOT EXISTS APPOINTMENT(
-	Apt_Lvl_ID	CHAR(2) PRIMARY KEY,
-	Apt_Lvl_Desc	VARCHAR(40),
-	Apt_Hourly_Rate	DECIMAL(5,2)
-) ENGINE=InnoDB;
 
 CREATE TABLE IF NOT EXISTS PRODUCTTYPE(
 	Prod_TypeID	INT PRIMARY KEY AUTO_INCREMENT,
@@ -91,8 +91,8 @@ CREATE TABLE IF NOT EXISTS CUSTOMERORDER(
 CREATE TABLE IF NOT EXISTS ORDERLINE(
 	CustOrd_ID  INT,
 	Prod_Num INT,
-	OrdLn_DateArrived   DATE, -- Format: ‘YYYY-MM-DD’; same as order date (CustOrd_Date) or later
-	OrdLn_DatePicked    DATE, -- Format: ‘YYYY-MM-DD’; same as arrival date (DateArrived) or later
+	OrdLn_DateArrived   DATE, -- same as order date (CustOrd_Date) or later
+	OrdLn_DatePicked    DATE, -- same as arrival date (DateArrived) or later
 	OrdLn_Qnty  INT, -- e.g., 2, 4, 5, etc
 	PRIMARY KEY (CustOrd_ID, Prod_Num),
 	FOREIGN KEY (CustOrd_ID) REFERENCES CUSTOMERORDER(CustOrd_ID),
