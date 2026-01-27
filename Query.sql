@@ -10,11 +10,63 @@ Where
 
 --customer order; 2nd oldest + customer first/last (as Full Name column label) + date of order
 
---store name + manager first/last name (as Full Name column label) + appointment level + appointment) hourly rate (must include $); high/low hourly rate
+SELECT DISTINCT
+    CONCAT(C.Cust_FName, ' ', C.Cust_LName) AS 'Full Name',
+    CO.CustOrd_Date AS 'Date of Order'
+FROM 
+    CUSTOMER AS C, CUSTOMERORDER AS CO
+Where
+    C.Cust_Number = CO.Cust_Number
+ORDER BY 
+    CO.CustOrd_Date DESC
+LIMIT 1,1;
+
+
+--store name + manager first/last name (as Full Name column label) + appointment level + appointment hourly rate (must include $); high/low hourly rate
+
+SELECT DISTINCT
+    Str_Name,
+    CONCAT(S.Staff_FName, ' ', S.Staff_LName) AS 'Full Name', 
+    Staff_Apt_Level,
+    CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
+FROM 
+    STAFF as S, STORE AS SO, APPOINTMENT AS A
+Where
+    S.Store_ID = SO.StoreManagerID
+ORDER by
+    A.Apt_Hourly_Rate DESC
 
 --products + prod ID + description + type + size + quantity of each sold (select only date picked up quantity)
 
---each product sold (picked) on/before 20/05/2024 + product id; sorted by - Ascending+ description + type + total quantity sold
+SELECT DISTINCT
+    OL.Prod_Num AS 'Product ID',
+    P.Prod_desc AS 'Product Description',
+    PT.Prod_Type_Desc AS 'Product Type',
+    P.Prod_Size AS 'Product Size',
+    OL.OrdLn_Qnty AS 'Quantity Sold'
+FROM
+    PRODUCT AS P, PRODUCTTYPE AS PT, ORDERLINE AS OL
+WHERE
+    P.Prod_TypeID = PT.Prod_TypeID,
+
+    OL.OrdLn_DatePicked IS NOT NULL;
+
+
+
+--each product sold (picked) on/before 20/05/2024 + product id; sorted by - Ascending + description + type + total quantity sold
+
+SELECT DISTINCT
+    OL.OrdLn_DatePicked AS 'Product Sold on:',
+    P.Prod_Num AS 'Product ID',
+    P.Prod_desc AS 'Product Descripion',
+    PT.Prod_Type_Desc AS 'Product Type',
+    OL.OrdLn_Qnty AS 'Total Quantity Sold'
+FROM
+    PRODUCT AS P, PRODUCTTYPE AS PT, ORDERLINE AS OL
+WHERE
+    P.Prod_TypeID = PT.Prod_TypeID,
+
+    OL.OrdLn_DatePicked IS NOT NULL;
 
 --Reference
 
