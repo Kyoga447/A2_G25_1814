@@ -34,18 +34,18 @@ INSERT INTO STORE (Str_Num, Str_Name, Str_Phone, Str_Email, StoreManagerID) VALU
 
 
 INSERT INTO PRODUCT (Prod_Num, Prod_desc, Prod_Size, Prod_Price, Price_Discount) VALUES
-    (2201241, 'black, High collared t-shirt', 'L', 40.00, 10),
-    (2201242, 'black and white split with fern green patterns shirt', 'L', 34.99, 0),
-    (2201243, 'black, formal skirt', 'M', 35.00, 20),
-    (2201244, 'orange tracksuit pants', '30', 29.99, 50),
-    (2201245, 'japanese styled school bag', 'One size', 30.00, 20);
+    (2201241, 'Black, High collared t-shirt', 'L', 40.00, 10),
+    (2201242, 'Black/White split, Fern green patterns shirt', 'L', 34.99, 0),
+    (2201243, 'Black, Formal skirt', 'M', 35.00, 20),
+    (2201244, 'Orange tracksuit pants', '30', 29.99, 50),
+    (2201245, 'Japanese styled school bag', 'One size', 30.00, 20);
 
 INSERT INTO PRODUCTTYPE (Prod_TypeID, Prod_Type_Desc) VALUES
     (5000121, 'T-shirt'),
-    (5000122, 'shirt'),
-    (5000123, 'skirt'),
-    (5000124, 'pants'),
-    (5000125, 'bag');
+    (5000122, 'Shirt'),
+    (5000123, 'Skirt'),
+    (5000124, 'Pants'),
+    (5000125, 'Bag');
 
 
 INSERT INTO CUSTOMER (Cust_Number, Cust_FName, Cust_LName, Cust_Phone, Cust_Email) VALUES
@@ -105,52 +105,52 @@ INSERT INTO ORDERLINE (CustOrd_ID, Prod_Num, OrdLn_DateArrived, OrdLn_DatePicked
     (72104, 2201243, '2024-05-16', '2024-05-30', 3),
     (72105, 2201245, '2024-08-10', NULL, 1);
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100004
     WHERE Staff_ID = 10001;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100004,
         SupervisorID = 10001
     WHERE Staff_ID = 10005
         OR Staff_ID = 10004;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100003
     WHERE Staff_ID = 10002;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100003,
         SupervisorID = 10002
     WHERE Staff_ID = 10003
         OR Staff_ID = 10006;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100005
     WHERE Staff_ID = 10007;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100005,
         SupervisorID = 10007
     WHERE Staff_ID = 10008
         OR Staff_ID = 10015;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100001
     WHERE Staff_ID = 10011;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100001,
         SupervisorID =10011
     WHERE Staff_ID = 10010
         OR Staff_ID = 10009;
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100002
     WHERE Staff_ID = 10014;
 
 
-UPDATE staff
+UPDATE STAFF
     SET Store_ID = 1100002,
         SupervisorID = 10014
     WHERE Staff_ID = 10012
