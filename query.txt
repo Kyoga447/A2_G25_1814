@@ -20,7 +20,7 @@ SELECT
     CONCAT(C.Cust_FName, ' ', C.Cust_LName) AS 'Full Name',
     CO.CustOrd_Date AS 'Date of Order'
 FROM 
-    CUSTOMER AS C AND 
+    CUSTOMER AS C,
     CUSTOMERORDER AS CO
 WHERE
     C.Cust_Number = CO.Cust_Number
@@ -37,8 +37,8 @@ SELECT
     Staff_Apt_Level,
     CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
 FROM 
-    STAFF AS S AND
-    STORE AS SO AND
+    STAFF AS S,
+    STORE AS SO,
     APPOINTMENT AS A
 WHERE
     S.Staff_ID = SO.StoreManagerID AND
@@ -76,7 +76,9 @@ SELECT
     PT.Prod_Type_Desc AS 'Product Type',
     OL.OrdLn_Qnty AS 'Total Quantity Sold'
 FROM
-    PRODUCT AS P, PRODUCTTYPE AS PT, ORDERLINE AS OL
+    PRODUCT AS P, 
+	PRODUCTTYPE AS PT, 
+	ORDERLINE AS OL
 WHERE
     P.Prod_TypeID = PT.Prod_TypeID AND
     OL.Prod_Num = P.Prod_Num AND
