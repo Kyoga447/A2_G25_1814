@@ -45,19 +45,37 @@ ORDER BY
 
 --products + prod ID + description + type + size + quantity of each sold (select only date picked up quantity)
 
+-- SELECT
+--     OL.Prod_Num AS 'Product ID',
+--     P.Prod_desc AS 'Product Description',
+--     PT.Prod_Type_Desc AS 'Product Type',
+--     P.Prod_Size AS 'Product Size',
+--     SUM(OL.OrdLn_Qnty) AS 'Quantity Sold'
+-- FROM
+--     PRODUCT AS P, 
+--     PRODUCTTYPE AS PT, 
+--     ORDERLINE AS OL
+-- WHERE
+--     P.Prod_TypeID = PT.Prod_TypeID,
+--     OL.Prod_Num = P.Prod_Num,
+--     OL.OrdLn_DatePicked IS NOT NULL;
+
+
+-- Changed WHERE clause commas to AND, removed the problem variable 'SUM'
 SELECT
     OL.Prod_Num AS 'Product ID',
     P.Prod_desc AS 'Product Description',
     PT.Prod_Type_Desc AS 'Product Type',
     P.Prod_Size AS 'Product Size',
-    SUM(OL.OrdLn_Qnty) AS 'Quantity Sold'
+   OL.OrdLn_Qnty AS 'Quantity Sold'
+    
 FROM
     PRODUCT AS P, 
     PRODUCTTYPE AS PT, 
     ORDERLINE AS OL
 WHERE
-    P.Prod_TypeID = PT.Prod_TypeID,
-    OL.Prod_Num = P.Prod_Num,
+    P.Prod_TypeID = PT.Prod_TypeID AND
+    OL.Prod_Num = P.Prod_Num AND
     OL.OrdLn_DatePicked IS NOT NULL;
 
 
