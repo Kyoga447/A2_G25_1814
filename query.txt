@@ -5,7 +5,7 @@ SELECT
     CONCAT(S.Staff_FName, ' ', S.Staff_LName) AS 'Full Name', 
     CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
 FROM 
-    STAFF AS S AND 
+    STAFF AS S, 
     APPOINTMENT AS A
 WHERE
     S.Staff_Apt_Level = A.Apt_Lvl_ID
