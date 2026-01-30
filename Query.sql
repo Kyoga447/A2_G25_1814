@@ -4,8 +4,9 @@ SELECT
     CONCAT(S.Staff_FName, ' ', S.Staff_LName) AS 'Full Name', 
     CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
 FROM 
-    STAFF as S, APPOINTMENT as A
-Where
+    STAFF AS S AND 
+    APPOINTMENT AS A
+WHERE
     S.Staff_Apt_Level = A.Apt_Lvl_ID
 ORDER BY
     A.Apt_Hourly_Rate DESC;
@@ -16,8 +17,9 @@ SELECT
     CONCAT(C.Cust_FName, ' ', C.Cust_LName) AS 'Full Name',
     CO.CustOrd_Date AS 'Date of Order'
 FROM 
-    CUSTOMER AS C, CUSTOMERORDER AS CO
-Where
+    CUSTOMER AS C AND 
+    CUSTOMERORDER AS CO
+WHERE
     C.Cust_Number = CO.Cust_Number
 ORDER BY 
     CO.CustOrd_Date ASC
@@ -32,8 +34,8 @@ SELECT
     Staff_Apt_Level,
     CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
 FROM 
-    STAFF as S,
-    STORE AS SO,
+    STAFF AS S AND
+    STORE AS SO AND
     APPOINTMENT AS A
 WHERE
     S.Staff_ID = SO.StoreManagerID AND
