@@ -79,7 +79,7 @@ CREATE TABLE IF NOT EXISTS ORDERMODE(
 
 CREATE TABLE IF NOT EXISTS CUSTOMERORDER(
 	CustOrd_ID  INT PRIMARY KEY AUTO_INCREMENT,
-	CustOrd_Date    DATE, -- format: 'yyyy-mm-dd'
+	CustOrd_Date    DATE,
 	CustOrd_Mode    CHAR(1),
 	Cust_Number     INT,
 	Str_Num     INT,
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS ORDERLINE(
 	Prod_Num INT,
 	OrdLn_DateArrived   DATE, -- same as order date (CustOrd_Date) or later
 	OrdLn_DatePicked    DATE, -- same as arrival date (DateArrived) or later
-	OrdLn_Qnty  INT, -- e.g., 2, 4, 5, etc
+	OrdLn_Qnty  INT,
 	PRIMARY KEY (CustOrd_ID, Prod_Num),
 	FOREIGN KEY (CustOrd_ID) REFERENCES CUSTOMERORDER(CustOrd_ID),
 	FOREIGN KEY (Prod_Num) REFERENCES PRODUCT(Prod_Num)
