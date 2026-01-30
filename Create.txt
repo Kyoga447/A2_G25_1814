@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS CUSTOMER(
 	Cust_Number 	INT PRIMARY KEY AUTO_INCREMENT,
 	Cust_FName	VARCHAR(30),
 	Cust_LName	VARCHAR(30),
-	Cust_Phone	CHAR(10),
+	Cust_Phone	CHAR(11), -- Character length extended by +1 due to dataset
 	Cust_Email	VARCHAR(60)
 ) ENGINE=InnoDB;
 
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS APPOINTMENT(
 CREATE TABLE IF NOT EXISTS STORE(
 	Str_Num		INT PRIMARY KEY AUTO_INCREMENT,
 	Str_Name	VARCHAR(50),
-	Str_Phone	CHAR(10),
+	Str_Phone	CHAR(11), -- Character length extended by +1 due to dataset
 	Str_Email	VARCHAR(40),
 	StoreManagerID	INT NOT NULL
 ) ENGINE=InnoDB;
@@ -31,7 +31,7 @@ CREATE TABLE IF NOT EXISTS STAFF(
 	Staff_ID	INT PRIMARY KEY AUTO_INCREMENT,
 	Staff_FName	VARCHAR(30),
 	Staff_LName	VARCHAR(30),
-	Staff_Phone	CHAR(10),
+	Staff_Phone	CHAR(11), -- Character length extended by +1 due to dataset
 	Staff_DoB	DATE,
 	Staff_StartDate	DATE,
 	Staff_Apt_Level	CHAR(2),
