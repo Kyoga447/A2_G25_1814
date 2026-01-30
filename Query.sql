@@ -82,7 +82,21 @@ WHERE
 
 --each product sold (picked) on/before 20/05/2024 + product id; sorted by - Ascending + description + type + total quantity sold
 
-SELECT DISTINCT
+-- SELECT DISTINCT
+--     OL.OrdLn_DatePicked AS 'Product Sold on:',
+--     P.Prod_Num AS 'Product ID',
+--     P.Prod_desc AS 'Product Descripion',
+--     PT.Prod_Type_Desc AS 'Product Type',
+--     OL.OrdLn_Qnty AS 'Total Quantity Sold'
+-- FROM
+--     PRODUCT AS P, PRODUCTTYPE AS PT, ORDERLINE AS OL
+-- WHERE
+--     P.Prod_TypeID = PT.Prod_TypeID,
+
+--     OL.OrdLn_DatePicked IS NOT NULL;
+
+-- added the date where clause, changed WHERE clause commas to AND
+SELECT 
     OL.OrdLn_DatePicked AS 'Product Sold on:',
     P.Prod_Num AS 'Product ID',
     P.Prod_desc AS 'Product Descripion',
@@ -91,8 +105,9 @@ SELECT DISTINCT
 FROM
     PRODUCT AS P, PRODUCTTYPE AS PT, ORDERLINE AS OL
 WHERE
-    P.Prod_TypeID = PT.Prod_TypeID,
-
+    P.Prod_TypeID = PT.Prod_TypeID AND
+    OL.Prod_Num = P.Prod_Num AND
+    OL.OrdLn_DatePicked <= '2024-05-20' AND
     OL.OrdLn_DatePicked IS NOT NULL;
 
 --Reference
