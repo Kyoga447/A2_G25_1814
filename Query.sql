@@ -35,11 +35,11 @@ FROM
     STAFF as S,
     STORE AS SO,
     APPOINTMENT AS A
-Where
-    SO.StoreManagerID = S.Store_ID,
+WHERE
+    S.Staff_ID = SO.StoreManagerID AND
     S.Staff_Apt_Level = A.Apt_Lvl_ID
-ORDER by
-    A.Apt_Hourly_Rate DESC
+ORDER BY   
+	A.Apt_Hourly_Rate DESC;
 
 --products + prod ID + description + type + size + quantity of each sold (select only date picked up quantity)
 
