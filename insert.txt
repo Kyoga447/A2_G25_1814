@@ -1,112 +1,12 @@
-USE asfashion25;
-
-
-
-
-INSERT INTO APPOINTMENT (Apt_Lvl_ID, Apt_Lvl_Desc, Apt_Hourly_Rate) VALUES
-('A1', 'Store Manager', 42),
-('A3', 'Assistant Store Manager', 32.5),
-('B2', 'Senior Sales Associate', 28),
-('C1', 'Sales Associate', 22.5),
-('C3', 'Junior Sales Associate', 19),
-('D2', 'Intern / Casual Staff', 16.5);
-
-INSERT INTO STAFF 
-(Staff_ID, Staff_FName, Staff_LName, Staff_Phone, Staff_DoB, Staff_StartDate, Staff_Apt_Level, Store_ID, SupervisorID) VALUES
-(10001, 'Duwon', 'Kong', '61731246789', '2006-10-07', '2024-01-09', 'A1', 1100004, NULL),
-(10002, 'Percy', 'Parker', '61734912056', '2006-10-05', '2024-01-09', 'A1', 1100003, NULL),
-(10003, 'John', 'Doe', '61733178842', '2001-09-14', '2024-02-02', 'C1', 1100003, 10002),
-(10004, 'Denji', 'Hayakawa', '61738264401', '2007-12-09', '2024-05-13', 'D2', 1100004, 10001),
-(10005, 'Reze', 'BomaGaaru', '61735699123', '2000-10-15', '2024-05-13', 'C3', 1100004, 10001),
-(10006, 'Gendo', 'Ikari', '61732845706', '1977-04-29', '2024-07-17', 'C3', 1100003, 10002),
-(10007, 'Kakashi', 'Hatake', '61734129980', '1993-09-15', '2024-01-18', 'A3', 1100005, NULL),
-(10008, 'Sakura', 'Haruno', '61736471305', '2007-03-28', '2024-01-17', 'C1', 1100005, 10007),
-(10009, 'Nagato', 'Uzumaki', '61738917462', '1988-09-19', '2024-04-03', 'D2', 1100001, 10011),
-(10010, 'Konan', 'Uzumaki', '61731586029', '1988-02-20', '2024-04-03', 'C3', 1100001, 10011),
-(10011, 'Tobi', 'Uchiha', '61471239084', '1989-02-10', '2024-01-19', 'B2', 1100001, NULL),
-(10012, 'Hashirama', 'Senju', '61486512740', '1983-10-23', '2024-03-03', 'C1', 1100002, 10014),
-(10013, 'Madara', 'Uchiha', '61463921158', '1983-12-24', '2024-03-03', 'C1', 1100002, 10014),
-(10014, 'Itachi', 'Uchiha', '61479406621', '2002-06-09', '2024-01-27', 'B2', 1100002, NULL),
-(10015, 'B', NULL, '61458134497', '1987-05-15', '2024-10-09', 'C3', 1100005, 10007);
-
-INSERT INTO STORE 
-(Str_Num, Str_Name, Str_Phone, Str_Email, StoreManagerID) VALUES
-(1100001, 'Akatsuki Fashion', '61731284501', 'akatsuki@a-fashion25.com', 10011),
-(1100002, 'Hidden Leaf Fashion', '61755697834', 'konohagakure@a-fashion25.com', 10014),
-(1100003, 'NERV Fashion', '61754312098', 'NERV@a-fashion25.com', 10002),
-(1100004, 'Red Wine Fashion', '61738126640', 'redwinefashion@a-fashion25.com', 10001),
-(1100005, 'Shinobi Fashion', '61746395172', 'shinobi@a-fashion25.com', 10007);
-
--- PRODUCT: 5 products across different types
-INSERT INTO PRODUCT (Prod_Num, Prod_desc, Prod_Size, Prod_Price, Price_Discount, Prod_TypeID) VALUES
-(2201241, 'black, High collared t-shirt', 'L', 40.00, 10, 5000121),
-(2201242, 'black and white split with fern green patterns shirt', 'L', 34.99, 0, 5000122),
-(2201243, 'black, formal skirt', 'M', 35.00, 20, 5000123),
-(2201244, 'orange tracksuit pants', '30', 29.99, 50, 5000124),
-(2201245, 'japanese styled school bag', 'One size', 30.00, 20, 5000125);
-
-INSERT INTO PRODUCTTYPE (Prod_TypeID, Prod_Type_Desc) VALUES
-(5000121, 'T-shirt'),
-(5000122, 'shirt'),
-(5000123, 'skirt'),
-(5000124, 'pants'),
-(5000125, 'bag');
-
--- CUSTOMER: 5 customers
-INSERT INTO CUSTOMER (Cust_Number, Cust_FName, Cust_LName, Cust_Phone, Cust_Email) VALUES
-(310001, 'Naruto', 'Uzumaki', '61469713842', 'seventh.hokage@leaf.gov'),
-(310002, 'Sasuke', 'Uchiha', '61491276403', 'itachi.was.wrong@uchiha.net'),
-(310003, 'Zetsu', 'Chiascuro', '61458639017', 'always.listening@akatsuki.org'),
-(310004, 'Makima', 'Seigyo', '61482105496', 'm.oversight@publicsafety.gov'),
-(310005, 'Shinji', 'Ikari', '61473820591', 'eva001@nerv.com.jp');
-
--- ORDERMODE: 4 order modes (realistic for retail)
-INSERT INTO ORDERMODE (Order_ModeID, Order_Mode_Desc) VALUES
-('O', 'Online'),
-('P', 'Phone'),
-('S', 'In Store'),
-('W', 'Walk in');
-
--- CUSTOMERORDER: 5 orders from customers
-INSERT INTO CUSTOMERORDER (CustOrd_ID, CustOrd_Date, CustOrd_Mode, Cust_Number, Str_Num) VALUES
-(72101, '2024-02-02', 'W', 310001, 1100005),
-(72102, '2024-03-12', 'W', 310002, 1100002),
-(72103, '2024-03-20', 'S', 310003, 1100001),
-(72104, '2024-05-15', 'P', 310004, 1100004),
-(72105, '2024-08-01', 'O', 310005, 1100003);
-
--- INVENTORY: 5 inventory records across stores
-INSERT INTO INVENTORY (Prod_Num, Str_Num, Inv_QntyOnHand, Inv_QtyOrdered) VALUES
-(2201241, 1100001, 30, 10),
-(2201242, 1100001, 35, 8),
-(2201243, 1100001, 20, 6),
-(2201244, 1100001, 30, 7),
-(2201245, 1100001, 15, 3),
-(2201241, 1100002, 30, 10),
-(2201242, 1100002, 35, 8),
-(2201243, 1100002, 20, 6),
-(2201244, 1100002, 30, 7),
-(2201245, 1100002, 15, 3),
-(2201241, 1100003, 30, 10),
-(2201242, 1100003, 35, 8),
-(2201243, 1100003, 20, 6),
-(2201244, 1100003, 30, 7),
-(2201245, 1100003, 15, 3),
-(2201241, 1100004, 30, 10),
-(2201242, 1100004, 35, 8),
-(2201243, 1100004, 20, 6),
-(2201244, 1100004, 30, 7),
-(2201245, 1100004, 15, 3),
-(2201241, 1100005, 30, 10),
-(2201242, 1100005, 35, 8),
-(2201243, 1100005, 20, 6),
-(2201244, 1100005, 30, 7),
-(2201245, 1100005, 15, 3);
-
--- ORDERLINE: 5 order line items (order details)
-INSERT INTO ORDERLINE (CustOrd_ID, Prod_Num, OrdLn_DateArrived, OrdLn_DatePicked, OrdLn_Qnty) VALUES
-(72101, 2201244, '2024-02-02', '2024-02-02', 3),
-(72102, 2201241, '2024-03-12', '2024-03-12', 2),
-(72103, 2201242, '2024-03-25', '2024-04-01', 5),
-(72104, 2201243, '2024-05-16', '2024-05-30', 3),
-(72105, 2201245, '2024-08-10', NULL, 1);
+SELECT DISTINCT
+    Str_Name,
+    CONCAT(S.Staff_FName, ' ', S.Staff_LName) AS 'Full Name', 
+    Staff_Apt_Level,
+    CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
+FROM 
+    STAFF as S, STORE AS SO, APPOINTMENT AS A
+WHERE
+    S.Staff_ID = SO.StoreManagerID AND
+    S.Staff_Apt_Level = A.Apt_Lvl_ID
+ORDER BY   
+	A.Apt_Hourly_Rate DESC;
