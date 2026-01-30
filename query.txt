@@ -83,5 +83,5 @@ WHERE
     P.Prod_TypeID = PT.Prod_TypeID AND
     OL.Prod_Num = P.Prod_Num AND
     OL.OrdLn_DatePicked <= '2024-05-20' AND
-    OL.OrdLn_DatePicked IS NOT NULL;
-
+    OL.OrdLn_DatePicked IS NOT NULL
+ORDER BY P.Prod_Num;
