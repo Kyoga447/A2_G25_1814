@@ -1,6 +1,5 @@
 
--- first/last name (as Full Name column label) + appointment) hourly rate (must include $) 
-
+-- Task 1
 SELECT
     CONCAT(S.Staff_FName, ' ', S.Staff_LName) AS 'Full Name', 
     CONCAT('$', A.Apt_Hourly_Rate) AS 'Hourly Rate'
@@ -12,10 +11,7 @@ WHERE
 ORDER BY
     A.Apt_Hourly_Rate DESC;
 
-
-
--- customer order; 2nd oldest + customer first/last (as Full Name column label) + date of order
-
+-- Task 2
 SELECT
     CONCAT(C.Cust_FName, ' ', C.Cust_LName) AS 'Full Name',
     CO.CustOrd_Date AS 'Date of Order'
@@ -28,9 +24,7 @@ ORDER BY
     CO.CustOrd_Date ASC
 LIMIT 1,1;
 
-
--- store name + manager first/last name (as Full Name column label) + appointment level + appointment hourly rate (must include $); high/low hourly rate
-
+-- Task 3
 SELECT
     Str_Name,
     CONCAT(S.Staff_FName, ' ', S.Staff_LName) AS 'Full Name', 
@@ -46,8 +40,7 @@ WHERE
 ORDER BY   
 	A.Apt_Hourly_Rate DESC;
 
--- products + prod ID + description + type + size + quantity of each sold (select only date picked up quantity)
-
+-- Task 4
 SELECT
     OL.Prod_Num AS 'Product ID',
     P.Prod_desc AS 'Product Description',
@@ -64,11 +57,7 @@ WHERE
     OL.Prod_Num = P.Prod_Num AND
     OL.OrdLn_DatePicked IS NOT NULL;
 
-
-
--- each product sold (picked) on/before 20/05/2024 + product id; sorted by - Ascending + description + type + total quantity sold
-
-
+-- Task 5
 SELECT 
     OL.OrdLn_DatePicked AS 'Product Sold on:',
     P.Prod_Num AS 'Product ID',
