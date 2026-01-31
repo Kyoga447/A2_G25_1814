@@ -1,4 +1,4 @@
-USE asfashion25;
+USE aSFashion25;
 
 INSERT INTO APPOINTMENT (Apt_Lvl_ID, Apt_Lvl_Desc, Apt_Hourly_Rate) VALUES
     ('A1', 'Store Manager', 42),
